@@ -22,7 +22,7 @@
     </div>
     <div class="form-group">
       <label for="age">Age</label>
-      <input type="text" class="form-control" id="age" th:field="*{age}" placeholder="Age">
+      <input type="number" class="form-control" id="age" th:field="*{age}" placeholder="Age">
     </div>
     <div class="form-group">
         <label for="login">Login</label>
@@ -33,13 +33,16 @@
         <input type="password" class="form-control" id="password" th:field="*{password}" placeholder="Password">
     </div>
 
-    <div class="form-group">
-        <label for="role_id_list">Choose role</label>
-        <input list="role" name="role_name" id="role_id_list">
-        <datalist id="role">
-            <option value="ROLE_ADMIN">
-            <option value="ROLE_USER">
-        </datalist>
+    <div class="form-group row">
+        <label class="col-4 col-form-label">Roles: </label>
+        <div class="col-8">
+            <th:block th:each="role: ${listRoles}">
+                <label>
+                    <input type="checkbox" th:name="roleCheckbox"
+                           th:text="${role.name}" th:value="${role.name}" class="m-2" />
+                </label>
+            </th:block>
+        </div>
     </div>
 
     <button type="submit"  class="btn btn-primary">Submit</button>

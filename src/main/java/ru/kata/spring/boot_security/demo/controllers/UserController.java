@@ -47,7 +47,10 @@ public class UserController  {
         return "redirect:/admin";
     }
     @GetMapping(value = "/new" )
-    public String addUser() {
+    public String addUser(Model model) {
+        List<Role> listRoles = roleService.findAll();
+        model.addAttribute("listRoles", listRoles);
+
         return "new";
     }
 
@@ -61,14 +64,18 @@ public class UserController  {
     }
 
     @PostMapping(path = "admin/add" )
-    public String addUser(@ModelAttribute("user") User user, @RequestParam("role_name") String role) {
-        user.addRole(roleService.findByName(role));
+    public String addUser(@ModelAttribute("user") User user,
+                          @RequestParam(name = "roleCheckbox",defaultValue = "false")String[] checkboxValue) {
+        for (String roleName:
+                checkboxValue) {
+            user.addRole(roleService.findByName(roleName));
+        }
         userService.addUser(user);
         return "redirect:/admin";
     }
     @PostMapping(path = "edit/admin/update" )
     public String editUser( @ModelAttribute("user") User user, @RequestParam("id") Long id,
-                            @RequestParam(name = "checkbox",defaultValue = "false")String[] checkboxValue) {
+                            @RequestParam(name = "roleCheckbox",defaultValue = "false")String[] checkboxValue) {
 
             for (String roleName:
                     checkboxValue) {

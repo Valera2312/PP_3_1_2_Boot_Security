@@ -22,7 +22,7 @@
     </div>
     <div class="form-group">
         <label for="age">Age</label>
-        <input type="text" class="form-control" th:value="${user.getAge()}" th:field="*{age}" id="age" placeholder="Age">
+        <input type="number" class="form-control" th:value="${user.getAge()}" th:field="*{age}" id="age" placeholder="Age">
     </div>
     <div class="form-group">
         <label for="login">Login</label>
@@ -39,7 +39,7 @@
         <div class="col-8">
             <th:block th:each="role: ${listRoles}">
                 <label>
-                    <input type="checkbox" th:name="checkbox"
+                    <input type="checkbox" th:name="roleCheckbox"
                            th:text="${role.name}" th:value="${role.name}" class="m-2" />
                 </label>
             </th:block>
