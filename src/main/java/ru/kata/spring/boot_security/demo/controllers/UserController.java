@@ -5,11 +5,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import ru.kata.spring.boot_security.demo.models.Role;
 import ru.kata.spring.boot_security.demo.models.User;
 import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
 import java.security.Principal;
+import java.util.List;
 
 
 @Controller
@@ -28,6 +30,7 @@ public class UserController  {
     @GetMapping(value = "/admin")
     public String getUserAdmin(ModelMap model,Principal principal) {
         model.addAttribute("users",userService.listUsers());
+        model.addAttribute("user_name",principal.getName());
         return "admin_panel";
     }
 
@@ -48,10 +51,12 @@ public class UserController  {
         return "new";
     }
 
-    @GetMapping(value = "/edit/{id}" )
-    public String updateUser(@PathVariable Long id, Model model) {
+    @GetMapping(value = "/edit" )
+    public String updateUser(@RequestParam Long id, Model model) {
         User user = userService.findById(id);
         model.addAttribute("user",user);
+        List<Role> listRoles = roleService.findAll();
+        model.addAttribute("listRoles", listRoles);
         return "update";
     }
 
@@ -61,8 +66,14 @@ public class UserController  {
         userService.addUser(user);
         return "redirect:/admin";
     }
-    @PostMapping(path = "admin/update" )
-    public String editUser( @ModelAttribute("user") User user, @RequestParam("id") Long id) {
+    @PostMapping(path = "edit/admin/update" )
+    public String editUser( @ModelAttribute("user") User user, @RequestParam("id") Long id,
+                            @RequestParam(name = "checkbox",defaultValue = "false")String[] checkboxValue) {
+
+            for (String roleName:
+                    checkboxValue) {
+                user.addRole(roleService.findByName(roleName));
+            }
 
         userService.editUser(user);
         return "redirect:/admin";

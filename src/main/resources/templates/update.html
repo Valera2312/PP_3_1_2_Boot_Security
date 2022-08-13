@@ -11,7 +11,7 @@
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
     <button type="button" class="btn btn-primary" th:onclick="|window.location.href = '/logout'|">Logout</button>
 </div>
-<form th:method="PUT" th:action="@{admin/update}" th:object="${user}"  >
+<form th:method="PATCH" th:action="@{admin/update}" th:object="${user}"  >
     <div class="form-group">
         <label for="name">Name</label>
         <input type="text" class="form-control" th:value="${user.getName()}" id="name" th:field="*{name}"  placeholder="Name">
@@ -34,6 +34,17 @@
         <input type="password" class="form-control" id="password" th:field="*{password}" placeholder="Password">
     </div>
     <input type="hidden" th:value="${user.id}" name="id" >
+    <div class="form-group row">
+        <label class="col-4 col-form-label">Roles: </label>
+        <div class="col-8">
+            <th:block th:each="role: ${listRoles}">
+                <label>
+                    <input type="checkbox" th:name="checkbox"
+                           th:text="${role.name}" th:value="${role.name}" class="m-2" />
+                </label>
+            </th:block>
+        </div>
+    </div>
 
     <button type="submit"  class="btn btn-primary">Submit</button>
 </form>

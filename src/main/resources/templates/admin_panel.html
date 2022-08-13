@@ -13,7 +13,7 @@
 <body>
 <h3  class="text-center">Панель администратора</h3>
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-    <button type="button" class="btn btn-primary" th:onclick="|window.location.href = '/logout'|">Logout</button>
+    <button type="button" th:text="'Logout, ' + ${user_name}" class="btn btn-primary" th:onclick="|window.location.href = '/logout'|">Logout</button>
 </div>
 
 <button type="button" class="btn btn-primary" th:onclick="|window.location.href = '/new'|">Add user</button>
@@ -40,7 +40,7 @@
             <td th:text="${user.getLogin()}"></td>
             <td th:text="${user.getPassword()}"></td>
             <td th:text="${user.getRoles()}"></td>
-            <td><button type="button" class="btn btn-primary" th:onclick="'window.location.href = \'' + @{/edit/{id}(id=${user.getId()})} + '\''">edit</button></td>
+            <td><button type="button" class="btn btn-primary" th:onclick="'window.location.href = \'' + @{/edit/?id={id}(id=${user.getId()})} + '\''">edit</button></td>
             <td><button type="button" class="btn btn-primary" th:onclick="'window.location.href = \'' + @{admin/delete/{id}(id=${user.getId()})} + '\''">delete</button></td>
         </tr>
     </th:block>
