@@ -27,7 +27,7 @@ public class UserController  {
         this.userService = userService;
     }
 
-    @GetMapping(value = "/admin")
+    @GetMapping(value = "/")
     public String getUserAdmin(ModelMap model,Principal principal) {
         model.addAttribute("users",userService.listUsers());
         model.addAttribute("user_name",principal.getName());
@@ -71,7 +71,7 @@ public class UserController  {
             user.addRole(roleService.findByName(roleName));
         }
         userService.addUser(user);
-        return "redirect:/admin";
+        return "redirect:/";
     }
     @PostMapping(path = "edit/admin/update" )
     public String editUser( @ModelAttribute("user") User user, @RequestParam("id") Long id,
@@ -83,7 +83,7 @@ public class UserController  {
             }
 
         userService.editUser(user);
-        return "redirect:/admin";
+        return "redirect:/";
     }
     @ModelAttribute(value = "user")
     public User newUser()
