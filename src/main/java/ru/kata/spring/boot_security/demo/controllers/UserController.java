@@ -44,7 +44,7 @@ public class UserController  {
     @GetMapping(value = "admin/delete/{id}" )
     public String deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
-        return "redirect:/admin";
+        return "redirect:/";
     }
     @GetMapping(value = "/new" )
     public String addUser(Model model) {
