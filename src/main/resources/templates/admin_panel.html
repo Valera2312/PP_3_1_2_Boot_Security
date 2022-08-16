@@ -12,6 +12,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+
         <!-- CSS only -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     </head>
@@ -61,11 +62,11 @@
                                             <td th:text="${user.getLogin()}"></td>
                                             <td th:text="${user.getPassword()}"></td>
                                             <td th:text="${user.getRoles()}"></td>
-                                            <td><a id="modal-663453" href="#modal-container-663453" role="button" class="btn btn-info" data-toggle="modal">Edit</a></td>
-                                            <td><a id="modal-663454" href="#modal-container-663454" role="button" class="btn btn-danger" data-toggle="modal">Delete</a></td>
+                                            <td><a id="modal-663453" href="#modal-container-663453" role="button" th:data-whatever = "${user.getId()}" class="btn btn-info" data-toggle="modal">Edit</a></td>
+<!--                                            <td><a id="modal-663454" href="#modal-container-663454" role="button"  class="btn btn-danger" data-toggle="modal">Delete</a></td>-->
 <!--                                            <td><a id="modal-663454" href="#modal-container-663454" role="button" class="btn btn-danger" data-toggle="modal">Launch demo modal</a></td>-->
 <!--                                            <td><button type="button" class="btn btn-info" th:onclick="'window.location.href = \'' + @{/edit/?id={id}(id=${user.getId()})} + '\''">edit</button></td>-->
-<!--                                            <td><button type="button" class="btn btn-danger" th:onclick="'window.location.href = \'' + @{admin/delete/{id}(id=${user.getId()})} + '\''">delete</button></td>-->
+                                            <td><button type="button" class="btn btn-danger" th:onclick="'window.location.href = \'' + @{admin/delete/{id}(id=${user.getId()})} + '\''">delete</button></td>
                                         </tr>
                                     </th:block>
 
@@ -125,7 +126,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form th:method="PATCH" th:action="@{admin/update}" th:object="${user}"  >
+                        <form th:method="PUT" th:action="@{admin/update}" th:object="${user}"  >
                             <div class="form-group">
                                 <label for="name">Name</label>
                                 <input type="text" class="form-control" th:value="${user.getName()}" id="name" th:field="*{name}"  placeholder="Name">
@@ -147,7 +148,7 @@
                                 <label for="password">Password</label>
                                 <input type="password" class="form-control" id="password" th:field="*{password}" placeholder="Password">
                             </div>
-                            <input type="hidden" th:value="${user.id}" name="id" >
+                            <input type="hidden" id="id" name="id" >
                             <div class="form-group row">
                                 <label class="col-4 col-form-label">Roles: </label>
                                 <div class="col-8">
@@ -173,4 +174,24 @@
             </div>
         </div>
     </body>
+    <script>
+        $('#modal-container-663453').on('show.bs.modal', function (event) {
+            const button = $(event.relatedTarget); // Button that triggered the modal
+            const recipient = button.data('whatever'); // Extract info from data-* attributes
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            const modal = $(this);
+            //modal.find('form').attr('action', url);
+            modal.find('#id').attr('value',recipient);
+        })
+        $('#modal-container-663454').on('show.bs.modal', function (event) {
+            const button = $(event.relatedTarget); // Button that triggered the modal
+            const recipient = button.data('whatever'); // Extract info from data-* attributes
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            const modal = $(this);
+            const url = 'edit/admin/update' + recipient;
+            //modal.find('input').attr('action', url);
+        })
+    </script>
 </html>

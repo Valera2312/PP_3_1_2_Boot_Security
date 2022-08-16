@@ -73,7 +73,7 @@ public class UserController  {
         userService.addUser(user);
         return "redirect:/";
     }
-    @PostMapping(path = "edit/admin/update" )
+    @PostMapping(path = "admin/update")
     public String editUser( @ModelAttribute("user") User user, @RequestParam("id") Long id,
                             @RequestParam(name = "roleCheckbox",defaultValue = "false")String[] checkboxValue) {
 
