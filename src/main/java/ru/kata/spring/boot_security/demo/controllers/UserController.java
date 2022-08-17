@@ -1,6 +1,7 @@
 package ru.kata.spring.boot_security.demo.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -29,6 +30,8 @@ public class UserController  {
 
     @GetMapping(value = "/")
     public String getUserAdmin(ModelMap model,Principal principal) {
+        List<Role> listRoles = roleService.findAll();
+        model.addAttribute("listRoles", listRoles);
         model.addAttribute("users",userService.listUsers());
         model.addAttribute("user_name",principal.getName());
         return "admin_panel";
