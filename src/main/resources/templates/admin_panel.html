@@ -125,8 +125,8 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="modal-container-663453" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+        <div class="modal fade " id="modal-container-663453" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="myModalLabel">
@@ -136,9 +136,9 @@
                             <span  role="button" aria-hidden="true">×</span>
                         </button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body text-center" >
                         <form th:method="PUT" th:action="@{admin/update}" th:object="${user}"  >
-                            <div class="form-group">
+                            <div class="form-group ">
                                 <label for="name">Name</label>
                                 <input type="text" class="form-control" th:value="${user.getName()}" id="name" th:field="*{name}"  placeholder="Name">
                             </div>
