@@ -1,5 +1,7 @@
 package ru.kata.spring.boot_security.demo.controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -29,7 +31,8 @@ public class UserController  {
     }
 
     @GetMapping(value = "/")
-    public String getUserAdmin(ModelMap model,Principal principal) {
+    public String getUserAdmin(ModelMap model,Principal principal) throws JsonProcessingException {
+
         List<Role> listRoles = roleService.findAll();
         model.addAttribute("listRoles", listRoles);
         model.addAttribute("users",userService.listUsers());
