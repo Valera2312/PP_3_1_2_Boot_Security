@@ -126,49 +126,48 @@
             </div>
         </div>
         <div class="modal fade " id="modal-container-663453" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog-centered" role="document">
+            <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="myModalLabel">
                             Edit user
                         </h5>
                         <button type="button" class="close" data-dismiss="modal">
-                            <span  role="button" aria-hidden="true">×</span>
+                            <span role="button" aria-hidden="true">×</span>
                         </button>
                     </div>
-                    <div class="modal-body text-center" >
+                    <div class="modal-body text-center " >
                         <form th:method="PUT" th:action="@{admin/update}" th:object="${user}"  >
-                            <div class="form-group ">
-                                <label for="name">Name</label>
-                                <input type="text" class="form-control" th:value="${user.getName()}" id="name" th:field="*{name}"  placeholder="Name">
-                            </div>
-                            <div class="form-group">
-                                <label for="Lastname">Lastname</label>
-                                <input type="text" class="form-control" th:value="${user.getLastName()}" th:field="*{lastName}" id="Lastname" placeholder="Lastname">
-                            </div>
-                            <div class="form-group">
-                                <label for="age">Age</label>
-                                <input type="number" class="form-control" th:value="${user.getAge()}" th:field="*{age}" id="age" placeholder="Age">
-                            </div>
-                            <div class="form-group">
-                                <label for="login">Login</label>
-                                <input type="text" class="form-control" id="login" th:field="*{login}" placeholder="Login">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" class="form-control" id="password" th:field="*{password}" placeholder="Password">
-                            </div>
-                            <input type="hidden" id="id" name="id" >
                             <div class="form-group row">
-                                <label class="col-4 col-form-label">Roles: </label>
-                                <div class="col-8">
-                                    <th:block th:each="role: ${listRoles}">
-                                        <label>
-                                            <input type="checkbox" th:name="roleCheckbox"
-                                                   th:text="${role.name}" th:value="${role.name}" class="m-2" />
-                                        </label>
-                                    </th:block>
+                                <div class="col-md-6 mx-auto">
+                                    <label for="name">Name</label>
+                                    <input type="text" class="form-control" th:value="${user.getName()}" id="name" th:field="*{name}"  placeholder="Name">
+
+                                    <label for="Lastname">Lastname</label>
+                                    <input type="text" class="form-control" th:value="${user.getLastName()}" th:field="*{lastName}" id="Lastname" placeholder="Lastname">
+
+
+                                    <label for="age">Age</label>
+                                    <input type="number" class="form-control" th:value="${user.getAge()}" th:field="*{age}" id="age" placeholder="Age">
+
+
+                                    <label for="login">Login</label>
+                                    <input type="text" class="form-control" id="login" th:field="*{login}" placeholder="Login">
+
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control" id="password" th:field="*{password}" placeholder="Password">
+
+                                    <input type="hidden" id="id" name="id" >
+
+                                    <label class="col-4 col-form-label">Roles: </label>
+                                    <div class="col-8">
+                                        <th:block th:each="role: ${listRoles}">
+                                            <label>
+                                                <input type="checkbox" th:name="roleCheckbox"
+                                                       th:text="${role.name}" th:value="${role.name}" class="m-2" />
+                                            </label>
+                                        </th:block>
+                                    </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
