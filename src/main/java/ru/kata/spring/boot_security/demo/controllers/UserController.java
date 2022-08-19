@@ -1,9 +1,6 @@
 package ru.kata.spring.boot_security.demo.controllers;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -20,18 +17,18 @@ import java.util.List;
 @Controller
 public class UserController  {
 
-    @Autowired
-    RoleService roleService;
 
+    private final RoleService roleService;
     private final UserService userService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(RoleService roleService, UserService userService) {
+        this.roleService = roleService;
         this.userService = userService;
     }
 
     @GetMapping(value = "/")
-    public String getUserAdmin(ModelMap model,Principal principal) throws JsonProcessingException {
+    public String getUserAdmin(ModelMap model,Principal principal) {
 
         List<Role> listRoles = roleService.findAll();
         model.addAttribute("listRoles", listRoles);
