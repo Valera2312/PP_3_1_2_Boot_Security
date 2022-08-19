@@ -1,9 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-
-
-
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
         <title>Title</title>
@@ -18,7 +14,7 @@
     <nav class="navbar navbar-inverse navbar-dark bg-dark ">
         <div class="container-fluid">
             <div class="navbar-header">
-                <h4 class="navbar-brand" th:text="${user_eame}"></h4>
+                <h4 class="navbar-brand" th:text="${user_name}"></h4>
             </div>
             <ul class="nav navbar-nav navbar-right">
                 <li class="nav-item">
@@ -108,11 +104,13 @@
                                             <label>Role: </label>
 
                                             <div>
-                                                <select class="form-control" th:size="${listRoles.size()}" multiple th:name="roleCheckbox ">
+                                                <label for="select_a"> </label>
+                                                <select class="form-control" id="select_a" th:size="${listRoles.size()}" multiple th:name="roleCheckbox ">
                                                     <th:block th:each="role: ${listRoles}">
                                                         <option th:value="${role.name}" th:text="${role.name}" class=""></option>
                                                     </th:block>
                                                 </select>
+
                                             </div>
                                             <button  type="submit"  class="btn btn-success mt-3 ">Add new user</button>
                                         </div>
@@ -161,11 +159,13 @@
 
                                     <label> Role: </label>
                                     <div>
-                                        <select class="form-control" th:size="${listRoles.size()}" multiple th:name="roleCheckbox ">
+                                        <label for="select_e"> </label>
+                                        <select class="form-control" id="select_e" th:size="${listRoles.size()}" multiple th:name="roleCheckbox ">
                                             <th:block th:each="role: ${listRoles}">
                                                 <option th:value="${role.name}" th:text="${role.name}" class=""></option>
                                             </th:block>
                                         </select>
+
                                     </div>
                                 </div>
                             </div>
@@ -219,6 +219,9 @@
 
                                     <label> Role: </label>
                                     <div>
+                                        <label for="select_d">
+
+                                        </label>
                                         <select class="form-control" multiple id ="select_d" disabled  >
 <!--                                            <th:block th:each="role: ${listRoles}">-->
 <!--                                                <option th:value="${role.name}" th:text="${role.name}" class=""></option>-->
