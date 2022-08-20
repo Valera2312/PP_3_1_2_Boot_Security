@@ -18,6 +18,7 @@ import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
 import java.util.HashMap;
@@ -46,9 +47,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .authorizeRequests()
                 .antMatchers("/login").anonymous()
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/**").hasRole("ADMIN")
-                .antMatchers("/user").hasAnyRole("USER","ADMIN")
+                .antMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
+                .antMatchers("/**").hasAuthority("ROLE_ADMIN")
+                .antMatchers("/user").hasAnyAuthority("ROLE_USER","ROLE_ADMIN")
                 .and()
                 .formLogin().successHandler(successUserHandler)
                 .permitAll()

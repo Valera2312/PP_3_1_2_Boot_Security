@@ -1,6 +1,12 @@
 package ru.kata.spring.boot_security.demo.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.GrantedAuthoritiesContainer;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -11,6 +17,7 @@ import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
 import java.security.Principal;
+import java.util.Collection;
 import java.util.List;
 
 
@@ -28,19 +35,21 @@ public class UserController  {
     }
 
     @GetMapping(value = "/")
-    public String getUserAdmin(ModelMap model,Principal principal) {
-
+    public String getUserAdmin(ModelMap model, Principal principal, Authentication authentication) {
         List<Role> listRoles = roleService.findAll();
         model.addAttribute("listRoles", listRoles);
+        model.addAttribute("authorities", authentication.getAuthorities());
         model.addAttribute("users",userService.listUsers());
         model.addAttribute("user_name",principal.getName());
         return "admin_panel";
     }
 
     @GetMapping(value = "/user")
-    public String getUser(ModelMap model, Principal principal) {
+    public String getUser(ModelMap model, Principal principal,Authentication authentication) {
         User user =  userService.findByLogin(principal.getName());
         model.addAttribute("user",user);
+        model.addAttribute("authorities", authentication.getAuthorities());
+        model.addAttribute("user_name",principal.getName());
         return "user";
     }
 
