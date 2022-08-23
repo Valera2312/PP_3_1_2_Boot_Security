@@ -86,15 +86,17 @@ public class UserController  {
     }
     @PostMapping(path = "admin/update")
     public String editUser( @ModelAttribute("user") User user, @RequestParam("id") Long id,
-                            @RequestParam(name = "roleCheckbox",defaultValue = "false")String[] checkboxValue) {
-
-        if(checkboxValue[0].equals("false")) {
-            for (Role role: userService.findById(id).getRoles() ) {
-                user.addRole(role);
-            }
-        } else {
-            for (String roleName: checkboxValue) {
-                user.addRole(roleService.findByName(roleName));
+                            @RequestParam(name = "roleCheckbox",defaultValue = "false")String[] checkboxValue,
+                            @RequestParam(name = "delete_all_roles",defaultValue = "false")String delete_all_roles) {
+        if(delete_all_roles.equals("false")) {
+            if(checkboxValue[0].equals("false")) {
+                for (Role role: userService.findById(id).getRoles() ) {
+                    user.addRole(role);
+                }
+            } else {
+                for (String roleName: checkboxValue) {
+                    user.addRole(roleService.findByName(roleName));
+                }
             }
         }
         userService.editUser(user);
