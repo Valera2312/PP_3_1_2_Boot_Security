@@ -69,6 +69,11 @@ public class UserController  {
         return "update";
     }
 
+    @GetMapping(value = "/denied" )
+    public String updateUser() {
+        return "denied";
+    }
+
     @PostMapping(path = "admin/add" )
     public String addUser(@ModelAttribute("user") User user,
                           @RequestParam(name = "roleCheckbox",defaultValue = "false")String[] checkboxValue) {
