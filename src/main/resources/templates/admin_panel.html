@@ -42,94 +42,95 @@
                     </ul>
                 </div>
                 <div class="col-md-10">
-                    <h1>Admin panel</h1>
-                    <div class="tabbable" id="tabs-118488">
-                        <ul class="nav nav-tabs">
-                            <li class="nav-item">
-                                <button class="nav-link active" id="#tab1" data-bs-toggle="tab" data-bs-target="#tab1" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">User table</button>
-                            </li>
-                            <li class="nav-item">
-                                <button class="nav-link " id="#tab2" data-bs-toggle="tab" data-bs-target="#tab2" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">New user</button>
-                            </li>
-                        </ul>
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="tab1">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <strong>All users</strong>
-                                    </div>
-                                    <table class="table table-hover table-striped  ">
-                                        <tr>
-                                            <th scope="col">ID</th>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Lastname</th>
-                                            <th scope="col">Age</th>
-                                            <th scope="col">Login</th>
-                                            <th scope="col">Password</th>
-                                            <th scope="col">Role</th>
-                                            <th scope="col">Edit</th>
-                                            <th scope="col">Delete</th>
-                                        </tr>
-                                        <th:block th:each="user : ${users}">
-                                            <tr>
-                                                <th scope="row" th:text="${user.getId()}"></th>
-                                                <td th:text="${user.getName()}"></td>
-                                                <td th:text="${user.getLastName()}"></td>
-                                                <td th:text="${user.getAge()}"></td>
-                                                <td th:text="${user.getLogin()}"></td>
-                                                <td th:text="${user.getPassword()}"></td>
-                                                <td th:text="${user.getRoles()}"></td>
-                                                <td><a id="modal-663453" href="#modal-container-663453" role="button" th:data-whatever = "${user.toString()}" class="btn btn-info" data-toggle="modal">Edit</a></td>
-                                                <!--                                            <td><a id="modal-663454" href="#modal-container-663454" role="button"  class="btn btn-danger" data-toggle="modal">Delete</a></td>-->
-                                                <td><a id="modal-663454" href="#modal-container-663454" role="button" class="btn btn-danger" th:data-whatever = "${user.toString()}" data-toggle="modal">Delete</a></td>
-                                                <!--                                            <td><button type="button" class="btn btn-info" th:onclick="'window.location.href = \'' + @{/edit/?id={id}(id=${user.getId()})} + '\''">edit</button></td>-->
-                                                <!--                                            <td><button type="button" class="btn btn-danger" th:onclick="'window.location.href = \'' + @{admin/delete/{id}(id=${user.getId()})} + '\''">delete</button></td>-->
-                                            </tr>
-                                        </th:block>
-                                    </table>
-                                </div>
-
-                            </div>
-                            <div class="tab-pane" id="tab2">
-                                <form th:method="POST" th:action="@{admin/add}" th:object="${user}"  >
-                                    <div class="form-group row text-center">
-                                        <div class="col-md-4 mx-auto" >
-                                            <label for="name">Name</label>
-                                            <input type="text" class="form-control" id="name"  th:field="*{name}" placeholder="Name">
-
-                                            <label for="Lastname">Lastname</label>
-                                            <input type="text" class="form-control" id="Lastname" th:field="*{lastName}" placeholder="Lastname">
-
-
-                                            <label for="age">Age</label>
-                                            <input type="number" class="form-control" id="age" th:field="*{age}" placeholder="Age">
-
-
-                                            <label for="login">Login</label>
-                                            <input type="text" class="form-control" id="login" th:field="*{login}" placeholder="Login">
-
-
-                                            <label for="password">Password</label>
-                                            <input type="password" class="form-control" id="password" th:field="*{password}" placeholder="Password">
-
-                                            <label>Role: </label>
-
-                                            <div>
-                                                <label for="select_a"> </label>
-                                                <select class="form-control" id="select_a" th:size="${listRoles.size()}" multiple th:name="roleCheckbox ">
-                                                    <th:block th:each="role: ${listRoles}">
-                                                        <option th:value="${role.getName()}" th:text="${role.getName()}" class=""></option>
-                                                    </th:block>
-                                                </select>
-
-                                            </div>
-                                            <button  type="submit"  class="btn btn-success mt-3 ">Add new user</button>
+                    <div style="margin-left: 10px">
+                        <h1>Admin panel</h1>
+                        <div class="tabbable" id="tabs-118488">
+                            <ul class="nav nav-tabs">
+                                <li class="nav-item">
+                                    <button class="nav-link active" id="#tab1" data-bs-toggle="tab" data-bs-target="#tab1" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">User table</button>
+                                </li>
+                                <li class="nav-item">
+                                    <button class="nav-link " id="#tab2" data-bs-toggle="tab" data-bs-target="#tab2" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">New user</button>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab1">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <strong>All users</strong>
                                         </div>
+                                        <table class="table table-hover table-striped  ">
+                                            <tr>
+                                                <th scope="col">ID</th>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Lastname</th>
+                                                <th scope="col">Age</th>
+                                                <th scope="col">Login</th>
+                                                <th scope="col">Password</th>
+                                                <th scope="col">Role</th>
+                                                <th scope="col">Edit</th>
+                                                <th scope="col">Delete</th>
+                                            </tr>
+                                            <th:block th:each="user : ${users}">
+                                                <tr>
+                                                    <th scope="row" th:text="${user.getId()}"></th>
+                                                    <td th:text="${user.getName()}"></td>
+                                                    <td th:text="${user.getLastName()}"></td>
+                                                    <td th:text="${user.getAge()}"></td>
+                                                    <td th:text="${user.getLogin()}"></td>
+                                                    <td th:text="${user.getPassword()}"></td>
+                                                    <td th:text="${user.getRoles()}"></td>
+                                                    <td><a id="modal-663453" href="#modal-container-663453" role="button" th:data-whatever = "${user.toString()}" class="btn btn-info" data-toggle="modal">Edit</a></td>
+                                                    <!--                                            <td><a id="modal-663454" href="#modal-container-663454" role="button"  class="btn btn-danger" data-toggle="modal">Delete</a></td>-->
+                                                    <td><a id="modal-663454" href="#modal-container-663454" role="button" class="btn btn-danger" th:data-whatever = "${user.toString()}" data-toggle="modal">Delete</a></td>
+                                                    <!--                                            <td><button type="button" class="btn btn-info" th:onclick="'window.location.href = \'' + @{/edit/?id={id}(id=${user.getId()})} + '\''">edit</button></td>-->
+                                                    <!--                                            <td><button type="button" class="btn btn-danger" th:onclick="'window.location.href = \'' + @{admin/delete/{id}(id=${user.getId()})} + '\''">delete</button></td>-->
+                                                </tr>
+                                            </th:block>
+                                        </table>
                                     </div>
-                                </form>
+
+                                </div>
+                                <div class="tab-pane" id="tab2">
+                                    <form th:method="POST" th:action="@{admin/add}" th:object="${user}"  >
+                                        <div class="form-group row text-center">
+                                            <div class="col-md-4 mx-auto" >
+                                                <label for="name">Name</label>
+                                                <input type="text" class="form-control" id="name"  th:field="*{name}" placeholder="Name">
+
+                                                <label for="Lastname">Lastname</label>
+                                                <input type="text" class="form-control" id="Lastname" th:field="*{lastName}" placeholder="Lastname">
+
+
+                                                <label for="age">Age</label>
+                                                <input type="number" class="form-control" id="age" th:field="*{age}" placeholder="Age">
+
+
+                                                <label for="login">Login</label>
+                                                <input type="text" class="form-control" id="login" th:field="*{login}" placeholder="Login">
+
+
+                                                <label for="password">Password</label>
+                                                <input type="password" class="form-control" id="password" th:field="*{password}" placeholder="Password">
+
+                                                <label>Role: </label>
+
+                                                <div>
+                                                    <label for="select_a"> </label>
+                                                    <select class="form-control" th:each="role: ${listRoles}" id="select_a" th:size="${listRoles.size()}" multiple th:name="roleCheckbox ">
+                                                        <option th:value="${role.getName()}" th:text="${role.getName()}" class=""></option>
+                                                    </select>
+
+                                                </div>
+                                                <button  type="submit"  class="btn btn-success mt-3 ">Add new user</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -171,10 +172,10 @@
                                     <label> Role: </label>
                                     <div>
                                         <label for="select_e"> </label>
-                                        <select class="form-control" id="select_e" th:size="${listRoles.size()}" multiple th:name="roleCheckbox ">
-                                            <th:block th:each="role: ${listRoles}">
-                                                <option th:value="${role.getName()}" th:text="${role.getName()}" class=""></option>
-                                            </th:block>
+                                        <select class="form-control" th:each="role: ${listRoles}" id="select_e" th:size="${listRoles.size()}" multiple th:name="roleCheckbox ">
+
+                                            <option th:value="${role.getName()}" th:text="${role.getName()}" class=""></option>
+
                                         </select>
 
                                     </div>
@@ -233,10 +234,13 @@
                                         <label for="select_d">
 
                                         </label>
-                                        <select class="form-control" multiple id ="select_d" disabled  >
+<!--                                        <select class="form-control" multiple id ="select_d" disabled  >-->
 <!--                                            <th:block th:each="role: ${listRoles}">-->
 <!--                                                <option th:value="${role.name}" th:text="${role.name}" class=""></option>-->
 <!--                                            </th:block>-->
+<!--                                        </select>-->
+                                        <select class="form-control" th:each="role: ${listRoles}" id="select_d" disabled th:size="${listRoles.size()}" multiple th:name="roleCheckbox ">
+                                            <option th:value="${role.getName()}" th:text="${role.getName()}" class=""></option>
                                         </select>
                                     </div>
                                 </div>
@@ -269,6 +273,7 @@
             modal.find('#Lastname_e').attr('value',myArray[2]);
             modal.find('#age_e').attr('value',myArray[3]);
             modal.find('#login_e').attr('value',myArray[4]);
+            modal.find('#password_e').attr('value',myArray[5]);
 
 
 
@@ -285,14 +290,15 @@
             modal.find('#Lastname_d').attr('value',myArray[2]);
             modal.find('#age_d').attr('value',myArray[3]);
             modal.find('#login_d').attr('value',myArray[4]);
+            modal.find('#password_d').attr('value',myArray[5]);
 
-            $.each(myArray, function (index, value) {
-
-                if(index > 5) {
-                     $('#select_d').append($('<option>',
-                         {text: value}))
-               }
-            });
+            // $.each(myArray, function (index, value) {
+            //
+            //     if(index > 5) {
+            //          $('#select_d').append($('<option>',
+            //              {text: value}))
+            //    }
+            // });
             $( "#delete" ).click(function() {
                 window.location.href = '/admin/delete/' + myArray[0];
             });
