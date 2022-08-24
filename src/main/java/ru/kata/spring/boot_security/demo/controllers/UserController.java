@@ -18,7 +18,6 @@ import java.util.List;
 @Controller
 public class UserController  {
 
-
     private final RoleService roleService;
     private final UserService userService;
 
@@ -33,7 +32,7 @@ public class UserController  {
         List<Role> listRoles = roleService.findAll();
         model.addAttribute("listRoles", listRoles);
         model.addAttribute("authorities", authentication.getAuthorities());
-        model.addAttribute("users",userService.listUsers());
+//        model.addAttribute("users",userService.listUsers());
         model.addAttribute("user_name",principal.getName());
         return "admin_panel";
     }
