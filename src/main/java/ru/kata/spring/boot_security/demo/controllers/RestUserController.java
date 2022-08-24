@@ -19,7 +19,7 @@ public class RestUserController {
 
     @RequestMapping(value = {"showUsers"}, method = RequestMethod.GET, produces = "application/json")
 
-    public @ResponseBody List<User> show()
+    public @ResponseBody List<User> showAllUsers()
     {
         return userService.listUsers();
     }

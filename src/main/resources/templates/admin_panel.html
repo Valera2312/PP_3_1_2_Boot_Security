@@ -271,13 +271,14 @@
             // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
             const modal = $(this);
             //modal.find('form').attr('action', url);
-            const myArray = recipient.split(" ");
-            modal.find('#id_view_e').attr('value',myArray[0]);
-            modal.find('#name_e').attr('value',myArray[1]);
-            modal.find('#Lastname_e').attr('value',myArray[2]);
-            modal.find('#age_e').attr('value',myArray[3]);
-            modal.find('#login_e').attr('value',myArray[4]);
-            modal.find('#password_e').attr('value',myArray[5]);
+            // const myArray = recipient.split(" ");
+            modal.find('#id_view_e').attr('value',recipient.id);
+            modal.find('#name_e').attr('value',recipient.name);
+            modal.find('#Lastname_e').attr('value',recipient.lastName);
+            modal.find('#age_e').attr('value',recipient.age);
+            modal.find('#login_e').attr('value',recipient.login);
+            modal.find('#password_e').attr('value',recipient.password);
+            console.log(recipient)
 
 
 
@@ -289,12 +290,12 @@
             // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
             const modal = $(this);
             const myArray = recipient.split(" ");
-            modal.find('#id_d').attr('value',myArray[0]);
-            modal.find('#name_d').attr('value',myArray[1]);
-            modal.find('#Lastname_d').attr('value',myArray[2]);
-            modal.find('#age_d').attr('value',myArray[3]);
-            modal.find('#login_d').attr('value',myArray[4]);
-            modal.find('#password_d').attr('value',myArray[5]);
+            modal.find('#id_d').attr('value',myArray.id);
+            modal.find('#name_d').attr('value',myArray.name);
+            modal.find('#Lastname_d').attr('value',myArray.lastName);
+            modal.find('#age_d').attr('value',myArray.age);
+            modal.find('#login_d').attr('value',myArray.login);
+            modal.find('#password_d').attr('value',myArray.password);
 
             // $.each(myArray, function (index, value) {
             //

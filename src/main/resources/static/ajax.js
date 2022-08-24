@@ -11,7 +11,6 @@ function showAllUsers(){
         dataType: "json",
         success: function(data){
             $.each(data, function(index, value){
-                console.log(value)
                 $("table").append(
                    '<tr>' +
                     '<th scope="row">' +  value.id + '</th>'+
@@ -21,6 +20,9 @@ function showAllUsers(){
                     '<td>'  +  value.login  + '</td>' +
                     '<td>'  +  value.password  + '</td>' +
                     '<td id="roles"> </td>' +
+
+                    '<td><a id="modal-663453" href="#modal-container-663453" role="button"' +
+                    ' data-whatever = " " class="btn btn-info" data-toggle="modal">Edit</a></td>' +
                     '</tr>'
                 );
                 $.each(value.roles, function(index, value){
@@ -28,6 +30,9 @@ function showAllUsers(){
                         value.name + ' '
                     )
                 })
+                $('#modal-663453').attr('data-whatever',JSON.stringify([value.id , value.name]));
+
+
             })
         }
     })
