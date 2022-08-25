@@ -1,4 +1,3 @@
-
 function showAllUsers() {
     let tBodyContent = '';
     $.ajax({
@@ -46,6 +45,28 @@ function deleteUser(id) {
         }
     })
 }
+function addUser() {
+
+    $.ajax({
+        url: "admin/add",
+        method : "post",
+        dataType : "JSON",
+        data: {
+            name: $("#name").val(),
+            lastName: $("#lastname").val(),
+            age: $("#age").val(),
+            login: $("#login").val(),
+            password: $("#password").val(),
+            roleCheckbox: $("#roleCheckbox").val()
+        } ,
+
+        success: function() {
+            showAllUsers();
+
+        }
+    })
+}
+
 
 
 $(document).ready(function() {

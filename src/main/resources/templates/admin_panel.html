@@ -56,7 +56,7 @@
                                 </li>
                             </ul>
                             <div class="tab-content">
-                                <div class="tab-pane active" id="tab1">
+                                <div class="tab-pane show active" id="tab1">
                                     <div class="card">
                                         <div class="card-header">
                                             <strong>All users</strong>
@@ -99,26 +99,26 @@
 
                                 </div>
                                 <div class="tab-pane" id="tab2">
-                                    <form th:method="POST" th:action="@{admin/add}" th:object="${user}"  >
+                                    <form>
                                         <div class="form-group row text-center">
                                             <div class="col-md-4 mx-auto" >
                                                 <label for="name">Name</label>
-                                                <input type="text" class="form-control" id="name"  th:field="*{name}" placeholder="Name">
+                                                <input type="text" class="form-control" id="name"  placeholder="Name">
 
-                                                <label for="Lastname">Lastname</label>
-                                                <input type="text" class="form-control" id="Lastname" th:field="*{lastName}" placeholder="Lastname">
+                                                <label for="lastname">Lastname</label>
+                                                <input type="text" class="form-control" id="lastname"  placeholder="Lastname">
 
 
                                                 <label for="age">Age</label>
-                                                <input type="number" class="form-control" id="age" th:field="*{age}" placeholder="Age">
+                                                <input type="number" class="form-control" id="age"  placeholder="Age">
 
 
                                                 <label for="login">Login</label>
-                                                <input type="text" class="form-control" id="login" th:field="*{login}" placeholder="Login">
+                                                <input type="text" class="form-control" id="login"  placeholder="Login">
 
 
                                                 <label for="password">Password</label>
-                                                <input type="password" class="form-control" id="password" th:field="*{password}" placeholder="Password">
+                                                <input type="password" class="form-control" id="password" placeholder="Password">
 
                                                 <label>Role: </label>
 
@@ -128,7 +128,8 @@
                                                         <option th:each="role: ${listRoles}" th:value="${role.getName()}" th:text="${role.getName()}" class=""></option>
                                                     </select>
                                                 </div>
-                                                <button  type="submit"  class="btn btn-success mt-3 ">Add new user</button>
+                                                <!-- <button  type="submit"  class="btn btn-success mt-3 ">Add new user</button>-->
+                                                <button onclick="addUser()"  class="btn btn-success mt-3 ">Add new user</button>
                                             </div>
                                         </div>
                                     </form>

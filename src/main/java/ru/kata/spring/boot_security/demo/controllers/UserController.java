@@ -28,7 +28,7 @@ public class UserController  {
     }
 
     @GetMapping(value = "/")
-    public String getUserAdmin(ModelMap model, Principal principal, Authentication authentication) {
+    public String getUsersAdmin(ModelMap model, Principal principal, Authentication authentication) {
         List<Role> listRoles = roleService.findAll();
         model.addAttribute("listRoles", listRoles);
         model.addAttribute("authorities", authentication.getAuthorities());
@@ -48,38 +48,38 @@ public class UserController  {
 //    public void deleteUser(@PathVariable Long id) {
 //        userService.deleteUser(id);
 //    }
-    @GetMapping(value = "/new" )
-    public String addUser(Model model) {
-        List<Role> listRoles = roleService.findAll();
-        model.addAttribute("listRoles", listRoles);
+//    @GetMapping(value = "/new" )
+//    public String addUser(Model model) {
+//        List<Role> listRoles = roleService.findAll();
+//        model.addAttribute("listRoles", listRoles);
+//
+//        return "new";
+//    }
 
-        return "new";
-    }
-
-    @GetMapping(value = "/edit" )
-    public String updateUser(@RequestParam Long id, Model model) {
-        User user = userService.findById(id);
-        model.addAttribute("user",user);
-        List<Role> listRoles = roleService.findAll();
-        model.addAttribute("listRoles", listRoles);
-        return "update";
-    }
+//    @GetMapping(value = "/edit" )
+//    public String updateUser(@RequestParam Long id, Model model) {
+//        User user = userService.findById(id);
+//        model.addAttribute("user",user);
+//        List<Role> listRoles = roleService.findAll();
+//        model.addAttribute("listRoles", listRoles);
+//        return "update";
+//    }
 
     @GetMapping(value = "/denied" )
-    public String updateUser() {
+    public String return403() {
         return "denied";
     }
 
-    @PostMapping(path = "admin/add" )
-    public String addUser(@ModelAttribute("user") User user,
-                          @RequestParam(name = "roleCheckbox",defaultValue = "false")String[] checkboxValue) {
-        for (String roleName:
-                checkboxValue) {
-            user.addRole(roleService.findByName(roleName));
-        }
-        userService.addUser(user);
-        return "redirect:/";
-    }
+//    @PostMapping(path = "admin/add" )
+//    public String addUser(@ModelAttribute("user") User user,
+//                          @RequestParam(name = "roleCheckbox",defaultValue = "false")String[] checkboxValue) {
+//        for (String roleName:
+//                checkboxValue) {
+//            user.addRole(roleService.findByName(roleName));
+//        }
+//        userService.addUser(user);
+//        return "redirect:/";
+//    }
     @PostMapping(path = "admin/update")
     public String editUser( @ModelAttribute("user") User user, @RequestParam("id") Long id,
                             @RequestParam(name = "roleCheckbox",defaultValue = "false")String[] checkboxValue,
