@@ -1,9 +1,6 @@
 
 $(document).ready(function() {
     showAllUsers();
-    alert("Asdsad")
-    $("#table-all-users  tbody").remove();
-
 });
 
 function showAllUsers() {
@@ -13,6 +10,7 @@ function showAllUsers() {
         type: "get",
         dataType: "json",
         success: function(data){
+
             $.each(data, function(index, value){
                 let userDataString = [value.id, value.name,
                         value.lastName,value.age, value.login, value.password];
