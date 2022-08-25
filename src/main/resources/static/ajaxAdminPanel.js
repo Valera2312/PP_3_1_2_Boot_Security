@@ -35,6 +35,7 @@ function showAllUsers() {
             $("#tbodyid").html(tBodyContent);
         }
     })
+
 }
 function deleteUser(id) {
     $.ajax({
@@ -57,12 +58,11 @@ function addUser() {
             age: $("#age").val(),
             login: $("#login").val(),
             password: $("#password").val(),
-            roleCheckbox: $("#roleCheckbox").val()
+            roleCheckbox: $('#select_a option:selected').text()
         } ,
 
         success: function() {
             showAllUsers();
-
         }
     })
 }

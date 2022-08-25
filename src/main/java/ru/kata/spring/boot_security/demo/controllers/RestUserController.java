@@ -7,6 +7,7 @@ import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
 import java.security.Principal;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -38,10 +39,11 @@ public class RestUserController {
     }
     @PostMapping(path = "admin/add",produces = "application/json" )
     public @ResponseBody void addUser(@ModelAttribute("user") User user,
-                          @RequestParam(name = "roleCheckbox",defaultValue = "false")String[] checkboxValue) {
+                          @RequestParam(name = "roleCheckbox",defaultValue = "false")String checkboxValue) {
+        String[] checkBoxArr = checkboxValue.split("ROLE_");
         for (String roleName:
-                checkboxValue) {
-            user.addRole(roleService.findByName(roleName));
+                checkBoxArr) {
+            user.addRole(roleService.findByName("ROLE_" + roleName));
         }
         userService.addUser(user);
     }

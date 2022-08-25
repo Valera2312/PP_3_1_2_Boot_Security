@@ -124,7 +124,7 @@
 
                                                 <div>
                                                     <label for="select_a"> </label>
-                                                    <select class="form-control" id="select_a" th:size="${listRoles.size()}" multiple th:name="roleCheckbox ">
+                                                    <select class="form-control" id="select_a" th:size="${listRoles.size()}" multiple>
                                                         <option th:each="role: ${listRoles}" th:value="${role.getName()}" th:text="${role.getName()}" class=""></option>
                                                     </select>
                                                 </div>
