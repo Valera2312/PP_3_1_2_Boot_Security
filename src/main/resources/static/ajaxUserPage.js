@@ -1,6 +1,7 @@
 
 $(document).ready(function() {
     showCurrentUser();
+
 });
 
 function showCurrentUser() {
@@ -10,17 +11,19 @@ function showCurrentUser() {
         type: "get",
         dataType: "json",
         success: function(data){
-            console.log(data)
-            // $("#user").append(
-            //     '<tr>' +
-            //     '<th scope="row">' +  value.id + '</th>'+
-            //     '<td>'  +  value.name  + '</td>' +
-            //     '<td>'  +  value.lastName  + '</td>' +
-            //     '<td>'  +  value.age  + '</td>' +
-            //     '<td>'  +  value.login  + '</td>' +
-            //     '<td>'  +  value.password  + '</td>' +
-            //     '<td>'  + roles +  '</td>'
-            // );
+            let allRoles = ""
+            data.roles.forEach( el => {
+                allRoles += el.name + ' ';
+            })
+              $("#user_table").append(
+                '<tr>' +
+                '<th scope="row">' +  data.id + '</th>'+
+                '<td>'  +  data.name  + '</td>' +
+                '<td>'  +  data.lastName  + '</td>' +
+                '<td>'  +  data.age  + '</td>' +
+                '<td>'  +  data.login  + '</td>' +
+                '<td>'  +  allRoles + '</td>'
+            );
         }
     })
 }

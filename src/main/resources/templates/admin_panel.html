@@ -62,17 +62,22 @@
                                             <strong>All users</strong>
                                         </div>
                                         <table class="table table-hover table-striped" id="table-all-users">
-                                            <tr>
-                                                <th scope="col">ID</th>
-                                                <th scope="col">Name</th>
-                                                <th scope="col">Lastname</th>
-                                                <th scope="col">Age</th>
-                                                <th scope="col">Login</th>
-                                                <th scope="col">Password</th>
-                                                <th scope="col">Role</th>
-                                                <th scope="col">Edit</th>
-                                                <th scope="col">Delete</th>
-                                            </tr>
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">ID</th>
+                                                    <th scope="col">Name</th>
+                                                    <th scope="col">Lastname</th>
+                                                    <th scope="col">Age</th>
+                                                    <th scope="col">Login</th>
+                                                    <th scope="col">Password</th>
+                                                    <th scope="col">Role</th>
+                                                    <th scope="col">Edit</th>
+                                                    <th scope="col">Delete</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tbodyid">
+
+                                            </tbody>
 <!--                                            <th:block th:each="user : ${users}">-->
 <!--                                                <tr id = 'users'>-->
 <!--                                                    <th scope="row" th:text="${user.getId()}"></th>-->
@@ -287,13 +292,13 @@
             // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
             // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
             const modal = $(this);
-            const myArray = recipient.split(" ");
-            modal.find('#id_d').attr('value',myArray.id);
-            modal.find('#name_d').attr('value',myArray.name);
-            modal.find('#Lastname_d').attr('value',myArray.lastName);
-            modal.find('#age_d').attr('value',myArray.age);
-            modal.find('#login_d').attr('value',myArray.login);
-            modal.find('#password_d').attr('value',myArray.password);
+            const myArray = recipient.split(",");
+            modal.find('#id_d').attr('value',myArray[0]);
+            modal.find('#name_d').attr('value',myArray[1]);
+            modal.find('#Lastname_d').attr('value',myArray[2]);
+            modal.find('#age_d').attr('value',myArray[3]);
+            modal.find('#login_d').attr('value',myArray[4]);
+            modal.find('#password_d').attr('value',myArray[5]);
 
             // $.each(myArray, function (index, value) {
             //

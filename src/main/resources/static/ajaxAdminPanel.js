@@ -1,6 +1,9 @@
 
 $(document).ready(function() {
     showAllUsers();
+    alert("Asdsad")
+    $("#table-all-users  tbody").remove();
+
 });
 
 function showAllUsers() {
@@ -17,7 +20,7 @@ function showAllUsers() {
                 $.each(value.roles, function(index_roles, value_roles){
                     roles += value_roles.name + ' ';
                   })
-                $("#table-all-users").append(
+                $("#table-all-users > tbody").append(
                    '<tr>' +
                     '<th scope="row">' +  value.id + '</th>'+
                      '<td>'  +  value.name  + '</td>' +
@@ -29,9 +32,14 @@ function showAllUsers() {
 
                     '<td><a id="modal-663453" href="#modal-container-663453" role="button"' +
                     ' data-whatever = "' + userDataString + '" class="btn btn-info" data-toggle="modal">Edit</a></td>'+
+
+                    '<td><a id="modal-663454" href="#modal-container-663454" role="button" ' +
+                    'class="btn btn-danger" data-whatever="' + userDataString + '" data-toggle="modal">Delete</a></td>' +
+
                     '</tr>'
                 );
             })
         }
     })
 }
+
