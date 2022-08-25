@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.kata.spring.boot_security.demo.models.User;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -17,10 +18,13 @@ public class RestUserController {
         this.userService = userService;
     }
 
-    @RequestMapping(value = {"showUsers"}, method = RequestMethod.GET, produces = "application/json")
 
-    public @ResponseBody List<User> showAllUsers()
-    {
+    @RequestMapping(value = {"showUsers"}, method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody List<User> showAllUsers() {
         return userService.listUsers();
+    }
+    @RequestMapping(value = {"showCurrentUser"}, method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody User showCurrentUser(Principal principal) {
+        return userService.findByLogin(principal.getName());
     }
 }

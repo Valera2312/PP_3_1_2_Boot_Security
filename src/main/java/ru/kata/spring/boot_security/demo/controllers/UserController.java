@@ -39,8 +39,6 @@ public class UserController  {
 
     @GetMapping(value = "/user")
     public String getUser(ModelMap model, Principal principal,Authentication authentication) {
-        User user =  userService.findByLogin(principal.getName());
-        model.addAttribute("user",user);
         model.addAttribute("authorities", authentication.getAuthorities());
         model.addAttribute("user_name",principal.getName());
         return "user";
