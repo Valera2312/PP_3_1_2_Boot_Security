@@ -1,16 +1,12 @@
 
-$(document).ready(function() {
-    showAllUsers();
-});
-
 function showAllUsers() {
+    let tBodyContent = '';
     $.ajax({
         url: "showUsers",
         data: {},
         type: "get",
         dataType: "json",
         success: function(data){
-
             $.each(data, function(index, value){
                 let userDataString = [value.id, value.name,
                         value.lastName,value.age, value.login, value.password];
@@ -18,7 +14,8 @@ function showAllUsers() {
                 $.each(value.roles, function(index_roles, value_roles){
                     roles += value_roles.name + ' ';
                   })
-                $("#table-all-users > tbody").append(
+
+                 tBodyContent = tBodyContent +
                    '<tr>' +
                     '<th scope="row">' +  value.id + '</th>'+
                      '<td>'  +  value.name  + '</td>' +
@@ -35,9 +32,25 @@ function showAllUsers() {
                     'class="btn btn-danger" data-whatever="' + userDataString + '" data-toggle="modal">Delete</a></td>' +
 
                     '</tr>'
-                );
             })
+            $("#tbodyid").html(tBodyContent);
         }
     })
 }
+function deleteUser(id) {
+    $.ajax({
+        url: "admin/delete/" + id,
+        type: "get",
+        success: function() {
+            showAllUsers();
+        }
+    })
+}
+
+
+$(document).ready(function() {
+
+    showAllUsers();
+
+});
 

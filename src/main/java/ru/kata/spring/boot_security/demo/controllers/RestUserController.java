@@ -27,4 +27,8 @@ public class RestUserController {
     public @ResponseBody User showCurrentUser(Principal principal) {
         return userService.findByLogin(principal.getName());
     }
+    @GetMapping(value = {"admin/delete/{id}"},produces = "application/json")
+    public void deleteUser(@PathVariable Long id) {
+        userService.deleteUser(id);
+    }
 }

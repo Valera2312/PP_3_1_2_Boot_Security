@@ -44,11 +44,10 @@ public class UserController  {
         return "user";
     }
 
-    @GetMapping (path = "admin/delete/{id}" )
-    public String deleteUser(@PathVariable Long id) {
-        userService.deleteUser(id);
-        return "redirect:/";
-    }
+//    @GetMapping (path = "admin/delete/{id}" )
+//    public void deleteUser(@PathVariable Long id) {
+//        userService.deleteUser(id);
+//    }
     @GetMapping(value = "/new" )
     public String addUser(Model model) {
         List<Role> listRoles = roleService.findAll();
