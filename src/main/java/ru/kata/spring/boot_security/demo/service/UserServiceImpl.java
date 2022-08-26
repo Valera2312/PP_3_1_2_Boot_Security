@@ -77,6 +77,14 @@ public class UserServiceImpl implements UserService,UserDetailsService {
         }
     }
 
+    @Override
+    @Transactional
+    public void deleteRoles(String deleteAllRolesFlag,Long id) {
+        if(deleteAllRolesFlag.equals("true")) {
+            findById(id).setRolesEmpty();
+        }
+    }
+
 
     @Override
     @Transactional(readOnly = true)

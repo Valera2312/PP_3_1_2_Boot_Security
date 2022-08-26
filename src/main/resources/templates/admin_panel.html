@@ -153,31 +153,32 @@
                         </button>
                     </div>
                     <div class="modal-body text-center " >
-                        <form th:method="PUT" th:action="@{admin/update}" th:object="${user}"  >
+                        <form>
                             <div class="form-group row">
                                 <div class="col-md-6 mx-auto">
+
                                     <label for="id_view_e">ID</label>
                                     <input type="text" readonly class="form-control"  id="id_view_e" name="id" >
 
                                     <label for="name_e">Name</label>
-                                    <input type="text" class="form-control"  id="name_e" th:field="*{name}"  >
+                                    <input type="text" class="form-control"  id="name_e"  >
 
-                                    <label for="Lastname_e">Lastname</label>
-                                    <input type="text" class="form-control"  th:field="*{lastName}" id="Lastname_e" >
+                                    <label for="lastname_e">Lastname</label>
+                                    <input type="text" class="form-control"   id="lastname_e" >
 
 
                                     <label for="age_e">Age</label>
-                                    <input type="number" class="form-control"  th:field="*{age}" id="age_e" >
+                                    <input type="number" class="form-control"   id="age_e" >
 
 
                                     <label for="login_e">Login</label>
-                                    <input type="text" class="form-control" id="login_e" th:field="*{login}" >
+                                    <input type="text" class="form-control" id="login_e"  >
 
                                     <label for="password_e">Password</label>
-                                    <input type="password" class="form-control" id="password_e" th:field="*{password}" >
+                                    <input type="password" class="form-control" id="password_e"  >
 
                                     <label for="flexCheckChecked">Delete all roles</label>
-                                    <input class="form-check-input" type="checkbox" value="true" name="delete_all_roles" id="flexCheckChecked" >
+                                    <input class="form-check-input" type="checkbox" value="true"  id="flexCheckChecked" >
 
 
                                     <div>
@@ -190,7 +191,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary">
+                                <button onclick="editUser()" class="btn btn-primary">
                                     Edit
                                 </button>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">

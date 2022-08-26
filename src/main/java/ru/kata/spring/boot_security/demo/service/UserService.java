@@ -15,4 +15,5 @@ public interface UserService {
     User findById(Long id);
     User findByLogin(String login);
     public void addRoles(String roles, User user);
+    public void deleteRoles(String deleteAllRolesFlag,Long id);
 }

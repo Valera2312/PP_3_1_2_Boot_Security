@@ -46,5 +46,13 @@ public class RestUserController {
         userService.addRoles(checkboxValueRoles,user);
         userService.addUser(user);
     }
+    @PostMapping(path = "admin/edit")
+    public void editUser( @ModelAttribute("user") User user, @RequestParam("id") Long id,
+                            @RequestParam(name = "roleCheckbox",defaultValue = "false")String checkboxValueRoles,
+                           @RequestParam(name = "deleteAllRolesFlag",defaultValue = "false")String deleteAllRolesFlag) {
 
+       userService.addRoles(checkboxValueRoles, user);
+       userService.deleteRoles(deleteAllRolesFlag, id);
+       userService.editUser(user);
+   }
 }

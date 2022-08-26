@@ -66,6 +66,29 @@ function addUser() {
         }
     })
 }
+function editUser() {
+
+    $.ajax({
+        url: "admin/edit",
+        method : "POST",
+        dataType : "JSON",
+        data: {
+            id : $("#id_view_e").val(),
+            name: $("#name_e").val(),
+            lastName: $("#lastname_e").val(),
+            age: $("#age_e").val(),
+            login: $("#login_e").val(),
+            password: $("#password_e").val(),
+            roleCheckbox: $('#select_e option:selected').text(),
+            deleteAllRolesFlag : $("#flexCheckChecked").val(),
+        } ,
+
+        success: function() {
+            showAllUsers();
+        }
+    })
+}
+
 
 
 
