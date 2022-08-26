@@ -5,6 +5,7 @@
         <title> User page</title>
         <th:block th:insert="~{admin_panel :: head}">
         </th:block>
+        <script src="/ajaxUserPage.js"></script>
     </head>
     <nav th:insert="~{admin_panel :: nav}"></nav>
     <body>
@@ -28,7 +29,7 @@
                             <strong>About user</strong>
                         </div>
                         <div class="card-body">
-                            <table class="table table-striped">
+                            <table id="user_table" class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th scope="col">ID</th>
@@ -40,14 +41,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row" th:text="${user.getId()}"></th>
-                                        <td th:text="${user.getName()}"></td>
-                                        <td th:text="${user.getLastName()}"></td>
-                                        <td th:text="${user.getAge()}"></td>
-                                        <td th:text="${user.getLogin()}"></td>
-                                        <td th:text="${user.getRoles()}"></td>
-                                    </tr>
+<!--                                    <tr>-->
+<!--                                        <th scope="row" th:text="${user.getId()}"></th>-->
+<!--                                        <td th:text="${user.getName()}"></td>-->
+<!--                                        <td th:text="${user.getLastName()}"></td>-->
+<!--                                        <td th:text="${user.getAge()}"></td>-->
+<!--                                        <td th:text="${user.getLogin()}"></td>-->
+<!--                                        <td th:text="${user.getRoles()}"></td>-->
+<!--                                    </tr>-->
                                 </tbody>
                             </table>
                         </div>
