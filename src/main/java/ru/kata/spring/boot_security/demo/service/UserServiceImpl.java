@@ -68,8 +68,8 @@ public class UserServiceImpl implements UserService,UserDetailsService {
     @Override
     @Transactional()
     public void deleteRoles(User user, String delete_all_roles, Long id) {
-        if(delete_all_roles.equals("false")) {
 
+        if(delete_all_roles.equals("false")) {
             for (Role role: findById(id).getRoles() ) {
                 user.addRole(role);
             }

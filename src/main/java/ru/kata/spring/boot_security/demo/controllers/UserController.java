@@ -86,8 +86,8 @@ public class UserController  {
                             @RequestParam(name = "roleCheckbox",defaultValue = "false")String[] checkboxValueRoles,
                             @RequestParam(name = "delete_all_roles",defaultValue = "false")String delete_all_roles) {
 
-        userService.deleteRoles(user,delete_all_roles,id);
         userService.addRoles(checkboxValueRoles,user);
+        userService.deleteRoles(user,delete_all_roles,id);
         userService.editUser(user);
         return "redirect:/";
     }

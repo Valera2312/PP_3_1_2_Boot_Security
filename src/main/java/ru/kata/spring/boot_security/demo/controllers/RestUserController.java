@@ -38,6 +38,7 @@ public class RestUserController {
         userService.deleteUser(id);
     }
     @PostMapping(path = "admin/add",produces = "application/json" )
+
     public @ResponseBody void addUser(@ModelAttribute("user") User user,
                           @RequestParam(name = "roleCheckbox",defaultValue = "false")String checkboxValue) {
         String[] checkBoxArr = checkboxValue.split("ROLE_");
