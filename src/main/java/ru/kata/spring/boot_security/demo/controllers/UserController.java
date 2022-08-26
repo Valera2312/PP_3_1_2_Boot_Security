@@ -76,29 +76,17 @@ public class UserController  {
 
     @PostMapping(path = "admin/add" )
     public String addUser(@ModelAttribute("user") User user,
-                          @RequestParam(name = "roleCheckbox",defaultValue = "false")String[] checkboxValue) {
-        for (String roleName:
-                checkboxValue) {
-            user.addRole(roleService.findByName(roleName));
-        }
+                          @RequestParam(name = "roleCheckbox",defaultValue = "false")String[] checkboxValueRoles) {
+        userService.addRoles(checkboxValueRoles,user);
         userService.addUser(user);
         return "redirect:/";
     }
     @PostMapping(path = "admin/update")
     public String editUser( @ModelAttribute("user") User user, @RequestParam("id") Long id,
-                            @RequestParam(name = "roleCheckbox",defaultValue = "false")String[] checkboxValue,
+                            @RequestParam(name = "roleCheckbox",defaultValue = "false")String[] checkboxValueRoles,
                             @RequestParam(name = "delete_all_roles",defaultValue = "false")String delete_all_roles) {
-        if(delete_all_roles.equals("false")) {
-            if(checkboxValue[0].equals("false")) {
-                for (Role role: userService.findById(id).getRoles() ) {
-                    user.addRole(role);
-                }
-            } else {
-                for (String roleName: checkboxValue) {
-                    user.addRole(roleService.findByName(roleName));
-                }
-            }
-        }
+
+        userService.addDeleteRoles(checkboxValueRoles,user,delete_all_roles,id);
         userService.editUser(user);
         return "redirect:/";
     }
