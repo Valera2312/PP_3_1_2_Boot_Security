@@ -24,11 +24,11 @@ public class RestUserController {
         this.userService = userService;
     }
 
-
     @RequestMapping(value = {"showUsers"}, method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody List<User> showAllUsers() {
         return userService.listUsers();
     }
+
     @RequestMapping(value = {"showCurrentUser"}, method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody User showCurrentUser(Principal principal) {
         return userService.findByLogin(principal.getName());
@@ -41,13 +41,9 @@ public class RestUserController {
 
     @PostMapping(path = "admin/add",produces = "application/json" )
     public @ResponseBody void addUser(@ModelAttribute("user") User user,
-                          @RequestParam(name = "roleCheckbox",defaultValue = "false")String checkboxValue) {
+                          @RequestParam(name = "roleCheckbox",defaultValue = "false")String checkboxValueRoles) {
 
-        String[] checkBoxArr =  checkboxValue.replace("ROLE_", "#ROLE_").split("#");
-        for (String roleName:
-                checkBoxArr) {
-            user.addRole(roleService.findByName(roleName));
-        }
+        userService.addRoles(checkboxValueRoles,user);
         userService.addUser(user);
     }
 
