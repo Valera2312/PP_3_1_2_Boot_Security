@@ -77,23 +77,17 @@ public class UserController  {
 
     @PostMapping(path = "admin/add" )
     public String addUser(@ModelAttribute("user") User user,
-                          @RequestParam(name = "roleCheckbox",defaultValue = "false")String[] checkboxValue) {
-        for (String roleName:
-                checkboxValue) {
-            user.addRole(roleService.findByName(roleName));
-        }
+                          @RequestParam(name = "roleCheckbox",defaultValue = "false")String[] checkboxValueRoles) {
+        userService.addRoles(checkboxValueRoles,user);
         userService.addUser(user);
         return "redirect:/";
     }
     @PostMapping(path = "admin/update")
     public String editUser( @ModelAttribute("user") User user, @RequestParam("id") Long id,
-                            @RequestParam(name = "roleCheckbox",defaultValue = "false")String[] checkboxValue) {
+                            @RequestParam(name = "roleCheckbox",defaultValue = "false")String[] checkboxValueRoles) {
 
-            for (String roleName:
-                    checkboxValue) {
-                user.addRole(roleService.findByName(roleName));
-            }
 
+        userService.addRoles(checkboxValueRoles,user);
         userService.editUser(user);
         return "redirect:/";
     }
