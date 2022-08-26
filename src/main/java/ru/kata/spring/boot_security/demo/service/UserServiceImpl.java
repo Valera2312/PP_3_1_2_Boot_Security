@@ -67,17 +67,13 @@ public class UserServiceImpl implements UserService,UserDetailsService {
     }
     @Override
     @Transactional()
-    public void addDeleteRoles(String[] roles, User user, String delete_all_roles, Long id) {
+    public void deleteRoles(User user, String delete_all_roles, Long id) {
         if(delete_all_roles.equals("false")) {
-            if(roles[0].equals("false")) {
-                for (Role role: findById(id).getRoles() ) {
-                    user.addRole(role);
-                }
-            } else {
-                for (String roleName: roles) {
-                    user.addRole(roleRepo.findByName(roleName));
-                }
+
+            for (Role role: findById(id).getRoles() ) {
+                user.addRole(role);
             }
+
         }
     }
     @Override
