@@ -37,13 +37,16 @@ public class RestUserController {
     public @ResponseBody void deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
     }
+
+
     @PostMapping(path = "admin/add",produces = "application/json" )
     public @ResponseBody void addUser(@ModelAttribute("user") User user,
                           @RequestParam(name = "roleCheckbox",defaultValue = "false")String checkboxValue) {
-        String[] checkBoxArr = checkboxValue.split("ROLE_");
+
+        String[] checkBoxArr =  checkboxValue.replace("ROLE_", "#ROLE_").split("#");
         for (String roleName:
                 checkBoxArr) {
-            user.addRole(roleService.findByName("ROLE_" + roleName));
+            user.addRole(roleService.findByName(roleName));
         }
         userService.addUser(user);
     }
