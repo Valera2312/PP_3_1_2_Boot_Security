@@ -16,20 +16,20 @@ public class RestUserController {
 
     private final UserService userService;
 
-    private final RoleService roleService;
+    //private final RoleService roleService;
 
     @Autowired
     public RestUserController(UserService userService,RoleService roleService) {
-        this.roleService = roleService;
+        //this.roleService = roleService;
         this.userService = userService;
     }
 
-    @RequestMapping(value = {"showUsers"}, method = RequestMethod.GET, produces = "application/json")
+    @GetMapping(value = {"showUsers"}, produces = "application/json")
     public @ResponseBody List<User> showAllUsers() {
         return userService.listUsers();
     }
 
-    @RequestMapping(value = {"showCurrentUser"}, method = RequestMethod.GET, produces = "application/json")
+    @GetMapping(value = {"showCurrentUser"},produces = "application/json")
     public @ResponseBody User showCurrentUser(Principal principal) {
         return userService.findByLogin(principal.getName());
     }
