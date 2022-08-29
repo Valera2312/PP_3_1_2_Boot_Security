@@ -43,17 +43,10 @@ public class UserController  {
     }
 
 
-
     @GetMapping(value = "/denied" )
     public String return403() {
         return "denied";
     }
 
-
-    @ModelAttribute(value = "user")
-    public User newUser()
-    {
-        return new User();
-    }
 
 }
