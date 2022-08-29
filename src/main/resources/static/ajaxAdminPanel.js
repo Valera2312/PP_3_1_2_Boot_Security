@@ -55,7 +55,6 @@ function addUser() {
     $.ajax({
         url: "admin/add",
         method : "post",
-        dataType : "JSON",
         data: {
             name: $("#name").val(),
             lastName: $("#lastname").val(),
@@ -67,17 +66,23 @@ function addUser() {
 
         success: function() {
             showAllUsers();
+            alert("User " +  $("#name").val() + " added")
+            let firstTabEl = document.querySelector('#tabs li:first-child button')
+            let firstTab = new bootstrap.Tab(firstTabEl)
+            firstTab.show()
+
+        },
+        error: function() {
+            alert("Error")
         }
     })
 
-    showAllUsers();
 }
 function editUser() {
 
     $.ajax({
         url: "admin/edit",
-        method : "POST",
-        dataType : "JSON",
+        method : "post",
         data: {
             id : $("#id_view_e").val(),
             name: $("#name_e").val(),
@@ -91,10 +96,10 @@ function editUser() {
 
         success: function() {
             showAllUsers();
+
         }
     })
 
-    showAllUsers();
 }
 
 $(document).ready(function() {

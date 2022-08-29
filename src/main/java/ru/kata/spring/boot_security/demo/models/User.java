@@ -2,9 +2,8 @@ package ru.kata.spring.boot_security.demo.models;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
+
 
 @Entity
 @Table(name = "users")

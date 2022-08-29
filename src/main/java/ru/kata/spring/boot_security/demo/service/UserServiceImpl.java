@@ -8,7 +8,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.kata.spring.boot_security.demo.dao.RoleRepo;
 import ru.kata.spring.boot_security.demo.dao.UserDao;
 import ru.kata.spring.boot_security.demo.models.Role;
 import ru.kata.spring.boot_security.demo.models.User;
@@ -23,12 +22,12 @@ public class UserServiceImpl implements UserService,UserDetailsService {
 
     private final UserDao userDao;
 
-    private final RoleRepo roleRepo;
+    private final RoleService roleService;
 
     @Autowired
-    UserServiceImpl(UserDao userDao, RoleRepo roleRepo) {
+    UserServiceImpl(UserDao userDao, RoleService roleService) {
 
-        this.roleRepo = roleRepo;
+        this.roleService = roleService;
         this.userDao = userDao;
     }
 
@@ -78,7 +77,7 @@ public class UserServiceImpl implements UserService,UserDetailsService {
         String[] checkBoxArr =  arrayRoles(roles);
         for (String roleName:
                 checkBoxArr) {
-            user.addRole(roleRepo.findByName(roleName));
+            user.addRole(roleService.findByName(roleName));
         }
     }
     @Override
@@ -91,7 +90,7 @@ public class UserServiceImpl implements UserService,UserDetailsService {
             String[] checkBoxArr = arrayRoles(roles);
             for (String roleName :
                     checkBoxArr) {
-                user.addRole(roleRepo.findByName(roleName));
+                user.addRole(roleService.findByName(roleName));
             }
         }
     }

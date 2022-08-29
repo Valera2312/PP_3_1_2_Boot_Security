@@ -1,29 +1,17 @@
 package ru.kata.spring.boot_security.demo.configs;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-import org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
-import java.util.HashMap;
-import java.util.Map;
 
 @Configuration
 @EnableWebSecurity
@@ -33,14 +21,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     UserService userService;
 
-//    @Value("${security.enable-csrf}")
-//    private boolean csrfEnabled;
 
     public WebSecurityConfig(SuccessUserHandler successUserHandler) {
         this.successUserHandler = successUserHandler;
     }
 
-   // @Override
     protected void configure(HttpSecurity http) throws Exception {
 
 
@@ -48,11 +33,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/login").anonymous()
-                .antMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
-                .antMatchers("/user").hasAnyAuthority("ROLE_USER","ROLE_ADMIN")
-                .antMatchers("/showUsers").hasAuthority("ROLE_ADMIN")
-                .antMatchers("/resources/**", "/**").permitAll()
+                .antMatchers("/user").permitAll()
+                .antMatchers("/ajaxUserPage.js").permitAll()
+                .antMatchers("/showCurrentUser").permitAll()
                 .antMatchers("/**").hasAuthority("ROLE_ADMIN")
+
                 .and()
                 .formLogin().successHandler(successUserHandler)
                 .and().exceptionHandling().accessDeniedPage("/denied")
@@ -62,23 +47,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 
-    // аутентификация inMemory
-//    @Bean
-//    @Override
-//    public UserDetailsService userDetailsService() {
-//        UserDetails user =
-//                User.withDefaultPasswordEncoder()
-//                        .username("admin")
-//                        .password("admin")
-//                        .roles("ADMIN")
-//                        .build();
-//
-//        return new InMemoryUserDetailsManager(user);
-//    }
-//    @Override // Authentication
-//    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.userDetailsService((UserDetailsService)userService).passwordEncoder(passwordEncoder());
-//    }
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {

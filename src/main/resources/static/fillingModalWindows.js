@@ -29,17 +29,7 @@ $(document).ready(function() {
         modal.find('#login_d').attr('value',myArray[4]);
         modal.find('#password_d').attr('value',myArray[5]);
 
-        // $.each(myArray, function (index, value) {
-        //
-        //     if(index > 5) {
-        //          $('#select_d').append($('<option>',
-        //              {text: value}))
-        //    }
-        // });
-
-
         $( "#delete" ).click(function() {
-            //window.location.href = '/admin/delete/' + myArray[0];
             deleteUser(myArray[0])
         });
 

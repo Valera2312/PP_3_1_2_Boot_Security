@@ -1,9 +1,5 @@
 package ru.kata.spring.boot_security.demo.dao;
 
-
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 import ru.kata.spring.boot_security.demo.models.User;
 
@@ -15,7 +11,6 @@ import java.util.List;
 @Repository
 public class UserDaoImpl implements UserDao {
 
-    //private final LocalContainerEntityManagerFactoryBean entityManager;
 
     private EntityManager entityManager;
 
