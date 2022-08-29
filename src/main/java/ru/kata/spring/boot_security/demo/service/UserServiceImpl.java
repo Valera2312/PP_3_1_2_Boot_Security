@@ -67,15 +67,35 @@ public class UserServiceImpl implements UserService,UserDetailsService {
         return userDao.findByLogin(login);
     }
 
+    public String[] arrayRolesWithDeletedPrefixRole(String roles) {
+        return roles.replace("ROLE_", "#ROLE_").split("#");
+    }
+
     @Override
     @Transactional
     public void addRoles(String roles, User user) {
-        String[] checkBoxArr =  roles.replace("ROLE_", "#ROLE_").split("#");
+
+        String[] checkBoxArr =  arrayRolesWithDeletedPrefixRole(roles);
         for (String roleName:
                 checkBoxArr) {
             user.addRole(roleRepo.findByName(roleName));
         }
     }
+    @Override
+    @Transactional
+    public void addRolesForEditingMethod(String roles, User user,Long id) {
+
+        if(roles.equals("false")) {
+            user.setRoles(findById(id).getRoles());
+        } else {
+            String[] checkBoxArr = arrayRolesWithDeletedPrefixRole(roles);
+            for (String roleName :
+                    checkBoxArr) {
+                user.addRole(roleRepo.findByName(roleName));
+            }
+        }
+    }
+
 
     @Override
     @Transactional

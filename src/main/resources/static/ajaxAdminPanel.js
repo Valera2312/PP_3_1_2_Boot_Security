@@ -6,11 +6,16 @@ function showAllUsers() {
         type: "get",
         dataType: "json",
         success: function(data){
+
+
             $.each(data, function(index, value){
                 let userDataString = [value.id, value.name,
                         value.lastName,value.age, value.login, value.password];
                 let roles = ""
-                $.each(value.roles, function(index_roles, value_roles){
+                $.each(value.roles.sort(function forSorting(a, b) {
+                                        let nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase()
+                                        if (nameA < nameB) return -1}),
+                    function(index_roles, value_roles){
                     roles += value_roles.name + ' ';
                   })
 

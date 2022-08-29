@@ -2,7 +2,9 @@ package ru.kata.spring.boot_security.demo.models;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "users")
@@ -42,6 +44,10 @@ public class User {
     }
 
 
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",
@@ -49,6 +55,7 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> roles = new HashSet<>();
+
 
     public void addRole(Role role) {
         this.roles.add(role);

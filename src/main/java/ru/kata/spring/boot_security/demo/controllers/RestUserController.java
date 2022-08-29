@@ -51,7 +51,7 @@ public class RestUserController {
                             @RequestParam(name = "roleCheckbox",defaultValue = "false")String checkboxValueRoles,
                            @RequestParam(name = "deleteAllRolesFlag",defaultValue = "false")String deleteAllRolesFlag) {
 
-       userService.addRoles(checkboxValueRoles, user);
+       userService.addRolesForEditingMethod(checkboxValueRoles, user,id);
        userService.deleteRoles(deleteAllRolesFlag, id);
        userService.editUser(user);
    }
