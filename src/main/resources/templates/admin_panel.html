@@ -77,25 +77,7 @@
                                                     <th scope="col">Delete</th>
                                                 </tr>
                                             </thead>
-                                            <tbody id="tbodyid">
-
-                                            </tbody>
-<!--                                            <th:block th:each="user : ${users}">-->
-<!--                                                <tr id = 'users'>-->
-<!--                                                    <th scope="row" th:text="${user.getId()}"></th>-->
-<!--                                                    <td th:text="${user.getName()}"></td>-->
-<!--                                                    <td th:text="${user.getLastName()}"></td>-->
-<!--                                                    <td th:text="${user.getAge()}"></td>-->
-<!--                                                    <td th:text="${user.getLogin()}"></td>-->
-<!--                                                    <td th:text="${user.getPassword()}"></td>-->
-<!--                                                    <td th:text="${user.getRoles()}"></td>-->
-<!--                                                    <td><a id="modal-663453" href="#modal-container-663453" role="button" th:data-whatever = "${user.toString()}" class="btn btn-info" data-toggle="modal">Edit</a></td>-->
-<!--                                                    &lt;!&ndash;                                            <td><a id="modal-663454" href="#modal-container-663454" role="button"  class="btn btn-danger" data-toggle="modal">Delete</a></td>&ndash;&gt;-->
-<!--                                                    <td><a id="modal-663454" href="#modal-container-663454" role="button" class="btn btn-danger" th:data-whatever = "${user.toString()}" data-toggle="modal">Delete</a></td>-->
-<!--                                                    &lt;!&ndash;                                            <td><button type="button" class="btn btn-info" th:onclick="'window.location.href = \'' + @{/edit/?id={id}(id=${user.getId()})} + '\''">edit</button></td>&ndash;&gt;-->
-<!--                                                    &lt;!&ndash;                                            <td><button type="button" class="btn btn-danger" th:onclick="'window.location.href = \'' + @{admin/delete/{id}(id=${user.getId()})} + '\''">delete</button></td>&ndash;&gt;-->
-<!--                                                </tr>-->
-<!--                                            </th:block>-->
+                                            <tbody id="tbodyid"> </tbody>
                                         </table>
                                     </div>
                                 </div>
@@ -243,13 +225,8 @@
                                     <label> Role: </label>
                                     <div>
                                         <label for="select_d">
-
                                         </label>
-<!--                                        <select class="form-control" multiple id ="select_d" disabled  >-->
-<!--                                            <th:block th:each="role: ${listRoles}">-->
-<!--                                                <option th:value="${role.name}" th:text="${role.name}" class=""></option>-->
-<!--                                            </th:block>-->
-<!--                                        </select>-->
+
                                         <select class="form-control"  id="select_d" disabled th:size="${listRoles.size()}" multiple th:name="roleCheckbox ">
                                              <option th:each="role: ${listRoles}" th:value="${role.getName()}" th:text="${role.getName()}" class=""></option>
                                         </select>
