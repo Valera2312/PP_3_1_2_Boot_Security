@@ -68,6 +68,7 @@ function addUser() {
 
         success: function() {
             showAllUsers();
+
         }
     })
 }
@@ -90,6 +91,7 @@ function editUser() {
 
         success: function() {
             showAllUsers();
+
         }
     })
 }

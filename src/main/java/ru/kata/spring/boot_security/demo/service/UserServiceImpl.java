@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService,UserDetailsService {
         return userDao.findByLogin(login);
     }
 
-    public String[] arrayRolesWithDeletedPrefixRole(String roles) {
+    public String[] arrayRoles(String roles) {
         return roles.replace("ROLE_", "#ROLE_").split("#");
     }
 
@@ -75,7 +75,7 @@ public class UserServiceImpl implements UserService,UserDetailsService {
     @Transactional
     public void addRoles(String roles, User user) {
 
-        String[] checkBoxArr =  arrayRolesWithDeletedPrefixRole(roles);
+        String[] checkBoxArr =  arrayRoles(roles);
         for (String roleName:
                 checkBoxArr) {
             user.addRole(roleRepo.findByName(roleName));
@@ -88,14 +88,13 @@ public class UserServiceImpl implements UserService,UserDetailsService {
         if(roles.equals("false")) {
             user.setRoles(findById(id).getRoles());
         } else {
-            String[] checkBoxArr = arrayRolesWithDeletedPrefixRole(roles);
+            String[] checkBoxArr = arrayRoles(roles);
             for (String roleName :
                     checkBoxArr) {
                 user.addRole(roleRepo.findByName(roleName));
             }
         }
     }
-
 
     @Override
     @Transactional
