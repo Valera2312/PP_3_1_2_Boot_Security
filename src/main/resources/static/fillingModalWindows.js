@@ -36,10 +36,13 @@ $(document).ready(function() {
         //              {text: value}))
         //    }
         // });
+
+
         $( "#delete" ).click(function() {
             //window.location.href = '/admin/delete/' + myArray[0];
             deleteUser(myArray[0])
         });
+
     })
 });
 

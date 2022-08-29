@@ -7,7 +7,6 @@ function showAllUsers() {
         dataType: "json",
         success: function(data){
 
-
             $.each(data, function(index, value){
                 let userDataString = [value.id, value.name,
                         value.lastName,value.age, value.login, value.password];
@@ -68,9 +67,10 @@ function addUser() {
 
         success: function() {
             showAllUsers();
-
         }
     })
+
+    showAllUsers();
 }
 function editUser() {
 
@@ -91,17 +91,17 @@ function editUser() {
 
         success: function() {
             showAllUsers();
-
         }
     })
+
+    showAllUsers();
 }
-
-
-
 
 $(document).ready(function() {
 
     showAllUsers();
 
 });
+
+
 
