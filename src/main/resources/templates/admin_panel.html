@@ -73,13 +73,14 @@
                                             </tr>
                                             <th:block th:each="user : ${users}">
                                                 <tr>
+
                                                     <th scope="row" th:text="${user.getId()}"></th>
                                                     <td th:text="${user.getName()}"></td>
                                                     <td th:text="${user.getLastName()}"></td>
                                                     <td th:text="${user.getAge()}"></td>
                                                     <td th:text="${user.getLogin()}"></td>
                                                     <td th:text="${user.getPassword()}"></td>
-                                                    <td th:text="${user.getRoles()}"></td>
+                                                    <td th:text="${user.getSortedRoles()}"></td>
                                                     <td><a id="modal-663453" href="#modal-container-663453" role="button" th:data-whatever = "${user.toString()}" class="btn btn-info" data-toggle="modal">Edit</a></td>
                                                     <!--                                            <td><a id="modal-663454" href="#modal-container-663454" role="button"  class="btn btn-danger" data-toggle="modal">Delete</a></td>-->
                                                     <td><a id="modal-663454" href="#modal-container-663454" role="button" class="btn btn-danger" th:data-whatever = "${user.toString()}" data-toggle="modal">Delete</a></td>
