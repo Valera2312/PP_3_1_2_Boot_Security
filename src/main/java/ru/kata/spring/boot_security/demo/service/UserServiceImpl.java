@@ -95,23 +95,6 @@ public class UserServiceImpl implements UserService,UserDetailsService {
     public User findByLogin(String login) {
         return userDao.findByLogin(login);
     }
-    @Override
-    @Transactional()
-    public void deleteRoles(User user, String delete_all_roles, Long id) {
-
-        if(delete_all_roles.equals("true")) {
-             findById(id).setEmptyRoles();
-        }
-    }
-    @Override
-    @Transactional
-    public void addRoles(String[] roles, User user) {
-
-        for (String roleName: roles) {
-            user.addRole(roleRepo.findByName(roleName));
-        }
-
-    }
 
     @Override
     @Transactional(readOnly = true)
