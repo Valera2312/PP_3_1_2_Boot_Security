@@ -13,8 +13,7 @@ import ru.kata.spring.boot_security.demo.dao.UserDao;
 import ru.kata.spring.boot_security.demo.models.Role;
 import ru.kata.spring.boot_security.demo.models.User;
 
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -40,7 +39,38 @@ public class UserServiceImpl implements UserService,UserDetailsService {
     @Override
     @Transactional()
     public void deleteUser(Long id) {
+
         userDao.deleteUser(id);
+    }
+    @Override
+    @Transactional()
+    public void deleteRoles(User user, String delete_all_roles, Long id) {
+
+        if(delete_all_roles.equals("true")) {
+            findById(id).setEmptyRoles();
+        }
+    }
+    @Override
+    @Transactional
+    public void addRolesForEdit(String[] roles, User user,Long id) {
+
+        if(roles[0].equals("false")) {
+           user.setRoles(findById(id).getRoles());
+        } else{
+            for (String roleName: roles) {
+                user.addRole(roleRepo.findByName(roleName));
+            }
+        }
+
+    }
+    @Override
+    @Transactional
+    public void addRoles(String[] roles, User user) {
+
+        for (String roleName: roles) {
+            user.addRole(roleRepo.findByName(roleName));
+        }
+
     }
 
     @Override
