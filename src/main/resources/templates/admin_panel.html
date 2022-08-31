@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="en">
     <head th:fragment="head">
         <title>Admin panel</title>
         <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
@@ -17,8 +19,8 @@
     <script src="/ajaxAdminPanel.js"></script>
 
     <nav th:fragment="nav" class="navbar navbar-inverse navbar-dark bg-dark ">
-        <div class="container-fluid ">
-            <div class="navbar-header ">
+        <div  class="container-fluid "  >
+            <div class="navbar-header" >
                 <h4 class="navbar-brand m-0 " style="display: inline" th:text="${user_name} + ' with roles:'"></h4>
                 <th:block th:each=" authoritie: ${authorities}">
                     <h6 style="display: inline; color: white; padding-left: 0" th:text="${authoritie.getAuthority()}"></h6>
@@ -37,8 +39,8 @@
             <div class="row p-0" >
                 <div class="col-md-2 mt-2 p-0">
                     <ul class="nav flex-column nav-pills ">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#">Admin</a>
+                        <li class="nav-item" >
+                            <a class="nav-link active"  href="#">Admin</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/user">User</a>
